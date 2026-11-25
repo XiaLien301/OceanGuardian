@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Guardian | SDG 14 Game</title>
+<style>
+:root{--cyan:#05c5e8;--blue:#0879bd;--deep:#07548e;--navy:#07365d;--white:#fff;--ink:#10314b;--gold:#ffd45c}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--white);background:linear-gradient(145deg,#04c8eb,#0788c8);min-height:100vh;padding:22px}
+button{font:inherit;cursor:pointer}
+.shell{max-width:1050px;margin:0 auto;background:var(--blue);border:2px solid rgba(255,255,255,.85);border-radius:28px;overflow:hidden;box-shadow:0 18px 45px #004b7540}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid #ffffff66;background:#086cae}
+.brand{font-weight:800;letter-spacing:1.5px;font-size:15px}
+.pill{border:1px solid #ffffffa8;border-radius:30px;padding:8px 14px;font-size:13px;background:#ffffff12}
+main{padding:clamp(22px,5vw,52px)}
+.hero{text-align:center;padding:12px 0 26px}
+.eyebrow{font-size:13px;letter-spacing:3px;font-weight:bold;color:#baf5ff}
+h1{font-size:clamp(34px,6vw,58px);margin:12px 0 10px;line-height:1}
+.subtitle{max-width:650px;margin:0 auto;color:#e6f8ff;line-height:1.6;font-size:16px}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0}
+.stat{background:#ffffff17;border:1px solid #ffffff55;border-radius:14px;padding:10px 18px;min-width:115px;text-align:center}
+.stat strong{display:block;font-size:22px}.stat span{font-size:11px;letter-spacing:1px;color:#d4f4ff}
+.panel{background:#075f9e;border:1px solid #ffffff70;border-radius:22px;padding:clamp(18px,3vw,30px);margin:14px 0}
+.section-title{font-size:22px;margin:0 0 8px}.muted{color:#d5f2ff;line-height:1.55}
+.missions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+.mission{border:1px solid #ffffff66;background:#ffffff12;border-radius:16px;padding:15px 12px;text-align:left;min-height:130px}
+.mission b{display:block;font-size:14px;margin:8px 0}.mission small{color:#d8f4ff;line-height:1.4;display:block}
+.icon{font-size:25px}
+.primary,.secondary,.choice{border:0;border-radius:30px;padding:13px 23px;font-weight:bold;transition:.18s}
+.primary{background:#fff;color:#075b94;box-shadow:0 5px 0 #c5eaf5}
+.primary:hover{transform:translateY(-2px);box-shadow:0 7px 0 #c5eaf5}
+.secondary{background:transparent;color:#fff;border:1px solid #ffffff9c}
+.center{text-align:center}
+.hidden{display:none!important}
+.progress-wrap{height:10px;background:#ffffff35;border-radius:20px;overflow:hidden;margin:18px 0 24px}
+.progress{height:100%;background:var(--gold);width:0%;transition:width .3s}
+.question-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:bold;letter-spacing:1px;background:#ffffff20;border:1px solid #ffffff55;border-radius:30px;padding:7px 12px}
+h2{font-size:clamp(22px,4vw,32px);line-height:1.25;margin:16px 0}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.choice{text-align:left;background:#fff;color:#16405c;border:2px solid transparent;border-radius:15px;min-height:78px;line-height:1.4}
+.choice:hover:not(:disabled){border-color:var(--gold);transform:translateY(-2px)}
+.choice:disabled{cursor:default;opacity:1}
+.choice.correct{background:#d7ffea;border-color:#24c77a}
+.choice.wrong{background:#ffe2df;border-color:#ff7668}
+.feedback{margin-top:18px;padding:15px 17px;border-radius:14px;background:#ffffff17;border:1px solid #ffffff55;line-height:1.55}
+.feedback strong{display:block;margin-bottom:4px}
+.next-row{display:flex;justify-content:flex-end;margin-top:18px}
+.result-score{font-size:64px;font-weight:800;color:var(--gold);margin:12px}
+.badge{display:inline-block;border:1px solid #ffffff80;border-radius:30px;padding:9px 15px;margin:6px;background:#ffffff14}
+.footer{text-align:center;padding:16px;color:#d6f5ff;font-size:12px}
+@media(max-width:720px){body{padding:10px}.missions{grid-template-columns:1fr 1fr}.answers{grid-template-columns:1fr}.top{padding:12px}.pill{font-size:11px;padding:7px 10px}}
+@media(max-width:420px){.missions{grid-template-columns:1fr}.brand{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top"><div class="brand">🌊 OCEAN GUARDIAN</div><div class="pill">LEARN • PLAY • PROTECT</div></div>
+  <main>
+    <section id="intro">
+      <div class="hero">
+        <div class="eyebrow">SUSTAINABLE DEVELOPMENT GOAL 14</div>
+        <h1>PROTECT OUR OCEAN</h1>
+        <p class="subtitle">The ocean gives life to our planet. Make smart choices, complete four missions, and become an Ocean Guardian!</p>
+        <div class="stats">
+          <div class="stat"><strong>4</strong><span>MISSIONS</span></div>
+          <div class="stat"><strong>8</strong><span>QUESTIONS</span></div>
+          <div class="stat"><strong>14</strong><span>LIFE BELOW WATER</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3 class="section-title">Your mission briefing</h3>
+        <p class="muted">Choose the most ocean-friendly action in each situation. Every answer teaches you a practical way to support SDG 14.</p>
+        <div class="missions">
+          <div class="mission"><div class="icon">♻️</div><b>14.1 — Reduce Pollution</b><small>Cut plastic waste and choose sustainable seafood.</small></div>
+          <div class="mission"><div class="icon">🐠</div><b>14.2 — Protect Ecosystems</b><small>Respect marine life and restore ocean habitats.</small></div>
+          <div class="mission"><div class="icon">🚲</div><b>14.3 — Reduce Acidification</b><small>Lower carbon emissions in daily life.</small></div>
+          <div class="mission"><div class="icon">🪸</div><b>14.5 — Conserve Marine Areas</b><small>Support marine protected areas and spread awareness.</small></div>
+        </div>
+        <div class="center"><button class="primary" id="startBtn">START THE MISSION →</button></div>
+      </div>
+    </section>
+
+    <section id="game" class="hidden">
+      <div class="question-head"><span class="tag" id="missionTag">MISSION 1</span><span class="tag" id="counter">QUESTION 1 / 8</span></div>
+      <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+      <div class="panel">
+        <div class="eyebrow" id="goalLabel">SDG 14.1</div>
+        <h2 id="question">Question goes here</h2>
+        <p class="muted" id="prompt">Choose the best action.</p>
+        <div class="answers" id="answers"></div>
+        <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+        <div class="next-row"><button id="nextBtn" class="primary hidden">NEXT QUESTION →</button></div>
+      </div>
+      <div class="center"><button class="secondary" id="quitBtn">Exit mission</button></div>
+    </section>
+
+    <section id="result" class="hidden center">
+      <div class="hero">
+        <div class="eyebrow">MISSION COMPLETE</div>
+        <h1>YOU ARE AN<br>OCEAN GUARDIAN!</h1>
+        <div class="result-score" id="score">0 / 8</div>
+        <p class="subtitle" id="resultText">Every small action can help protect marine life.</p>
+      </div>
+      <div class="panel">
+        <h3 class="section-title">What you learned</h3>
+        <div class="badge">♻️ Reduce marine pollution</div>
+        <div class="badge">🐠 Protect ocean ecosystems</div>
+        <div class="badge">🚲 Reduce your carbon footprint</div>
+        <div class="badge">🪸 Support marine conservation</div>
+        <p class="muted">Remember: refuse single-use plastics, respect marine habitats, save energy, and share reliable information about ocean protection.</p>
+        <button class="primary" id="restartBtn">PLAY AGAIN ↻</button>
+      </div>
+    </section>
+  </main>
+  <div class="footer">SDG 14: CONSERVE AND SUSTAINABLY USE THE OCEANS, SEAS AND MARINE RESOURCES.</div>
+</div>
+<script>
+const questions = [
+ {goal:"SDG 14.1 — REDUCE MARINE POLLUTION",mission:"MISSION 1 · CLEANER OCEANS",q:"You are buying a drink at a convenience store. Which choice helps reduce marine plastic pollution?",a:["Choose a reusable bottle","Take a new plastic bottle and straw every time","Throw the packaging on the beach","Use several disposable cups"],correct:0,why:"Reusable bottles reduce the amount of single-use plastic that can eventually reach rivers and oceans."},
+ {goal:"SDG 14.1 — REDUCE MARINE POLLUTION",mission:"MISSION 1 · CLEANER OCEANS",q:"You want to eat seafood responsibly. What should you do?",a:["Buy seafood without asking where it came from","Choose seafood from sustainable sources","Buy the rarest marine species","Ignore fishing practices"],correct:1,why:"Choosing sustainably sourced seafood helps reduce pressure on marine populations and supports healthier oceans."},
+ {goal:"SDG 14.2 — PROTECT AND RESTORE ECOSYSTEMS",mission:"MISSION 2 · HEALTHY HABITATS",q:"You visit a coral reef while snorkeling. What is the safest action?",a:["Stand on the coral to take a photo","Break a small piece as a souvenir","Observe marine life without touching or damaging it","Chase fish for a closer look"],correct:2,why:"Coral reefs are fragile habitats. Keep a safe distance and never touch, stand on, or take pieces of coral."},
+ {goal:"SDG 14.2 — PROTECT AND RESTORE ECOSYSTEMS",mission:"MISSION 2 · HEALTHY HABITATS",q:"Your school organizes a beach cleanup. How can you help?",a:["Join the cleanup and dispose of waste properly","Leave collected rubbish beside the water","Only pick up rubbish that looks attractive","Push litter into the sea"],correct:0,why:"Beach cleanups remove waste before it can harm marine animals or break down into microplastics."},
+ {goal:"SDG 14.3 — REDUCE OCEAN ACIDIFICATION",mission:"MISSION 3 · LOWER CARBON EMISSIONS",q:"Which daily choice can help lower carbon dioxide emissions?",a:["Drive alone for every short trip","Leave lights on all day","Use public transportation or ride a bicycle","Waste electricity at home"],correct:2,why:"Public transportation, cycling, and walking can reduce fossil-fuel use and help lower carbon dioxide emissions."},
+ {goal:"SDG 14.3 — REDUCE OCEAN ACIDIFICATION",mission:"MISSION 3 · LOWER CARBON EMISSIONS",q:"Why does reducing carbon dioxide matter to the ocean?",a:["More carbon dioxide makes seawater less acidic","The ocean absorbs carbon dioxide, which contributes to acidification","Carbon dioxide creates more coral reefs","It has no connection to ocean health"],correct:1,why:"The ocean absorbs carbon dioxide from the atmosphere. This changes seawater chemistry and makes it more acidic, threatening marine life."},
+ {goal:"SDG 14.5 — CONSERVE COASTAL AND MARINE AREAS",mission:"MISSION 4 · PROTECT OCEAN AREAS",q:"Your class wants to raise awareness of marine protected areas. What is a good idea?",a:["Create an educational poster or video","Share unverified information","Encourage people to damage reefs","Keep all conservation information secret"],correct:0,why:"Educational posters and videos can help people understand why marine protected areas and conservation matter."},
+ {goal:"SDG 14.5 — CONSERVE COASTAL AND MARINE AREAS",mission:"MISSION 4 · PROTECT OCEAN AREAS",q:"What is one important purpose of a marine protected area?",a:["Allow unlimited fishing everywhere","Provide places where marine ecosystems and wildlife can be protected","Encourage people to collect coral","Increase ocean pollution"],correct:1,why:"Marine protected areas help conserve important habitats and biodiversity by managing or limiting harmful activities."}
+];
+let index=0,score=0,answered=false;
+const $=id=>document.getElementById(id);
+function show(id){["intro","game","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function start(){index=0;score=0;show("game");render()}
+function render(){
+ const q=questions[index];answered=false;
+ $("missionTag").textContent=q.mission;$("counter").textContent=`QUESTION ${index+1} / ${questions.length}`;
+ $("progress").style.width=(index/questions.length*100)+"%";
+ $("goalLabel").textContent=q.goal;$("question").textContent=q.q;
+ $("prompt").textContent="Choose the best action:";$("feedback").classList.add("hidden");$("nextBtn").classList.add("hidden");
+ $("answers").innerHTML="";
+ q.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="choice";b.textContent=String.fromCharCode(65+i)+". "+answer;b.addEventListener("click",()=>choose(i));$("answers").appendChild(b)});
+}
+function choose(choice){
+ if(answered)return;answered=true;const q=questions[index];const buttons=[...$("answers").children];
+ buttons.forEach((b,i)=>{b.disabled=true;if(i===q.correct)b.classList.add("correct");else if(i===choice)b.classList.add("wrong")});
+ const good=choice===q.correct;if(good)score++;
+ $("feedback").classList.remove("hidden");
+ $("feedback").innerHTML=`<strong>${good?"✓ Correct! Great choice.":"✗ Not quite. Let's learn!"}</strong>${q.why}`;
+ $("nextBtn").textContent=index===questions.length-1?"SEE MY RESULTS →":"NEXT QUESTION →";$("nextBtn").classList.remove("hidden");
+ $("progress").style.width=((index+1)/questions.length*100)+"%";
+}
+function next(){if(!answered)return;if(index<questions.length-1){index++;render()}else finish()}
+function finish(){show("result");$("score").textContent=score+" / "+questions.length;
+ $("resultText").textContent=score===8?"Perfect score! You know how to make ocean-friendly choices. Keep inspiring others!":score>=5?"Great work! You are learning how everyday choices can protect the ocean.": "Good effort! Review the explanations and play again to become an even stronger Ocean Guardian."}
+$("startBtn").addEventListener("click",start);$("nextBtn").addEventListener("click",next);
+$("quitBtn").addEventListener("click",()=>show("intro"));$("restartBtn").addEventListener("click",start);
+</script>
+</body>
+</html>
